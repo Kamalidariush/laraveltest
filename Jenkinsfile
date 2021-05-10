@@ -13,7 +13,7 @@ pipeline {
       stage('Build') {
         steps {
           echo 'Building...'
-		  echo "${env.GIT_BRANCH}".replace("/",".") + "."+"${env.BUILD_ID}"
+		  echo '${env.GIT_BRANCH} ${env.BUILD_ID}'
           echo "Running ${env.BUILD_ID} ${env.BUILD_DISPLAY_NAME} on ${env.NODE_NAME} and JOB ${env.JOB_NAME}"
         }
    }
