@@ -47,7 +47,7 @@ pipeline {
                 script{
                     
                     }
-                }
+                
 
                 input message: "Do you want to run migration?"
 
