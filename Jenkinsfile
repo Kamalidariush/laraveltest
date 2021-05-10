@@ -8,14 +8,25 @@ pipeline {
           echo "Running ${env.BUILD_ID} ${env.BUILD_DISPLAY_NAME} on ${env.NODE_NAME} and JOB ${env.JOB_NAME}"
         }
    }
+   stage('DockerPush') {
+        steps {
+          echo 'Building...'
+          echo "Running ${env.BUILD_ID} ${env.BUILD_DISPLAY_NAME} on ${env.NODE_NAME} and JOB ${env.JOB_NAME}"
+        }
+	
    stage('Test') {
      steps {
         echo 'Testing...'
      }
    }
-   stage('Deploy') {
+   stage('Deploy_Dev') {
      steps {
-       echo 'Deploying...'
+        echo 'Deploy_Dev'
+     }
+   }
+   stage('Deploy_Prod') {
+     steps {
+       echo 'Deploying_Prod'
      }
    }
   }
