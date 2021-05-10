@@ -66,8 +66,7 @@ pipeline {
                     }
                 }
             }
-        }
-        
+      
         stage('Undeploy_Dev'){
             when {
                 expression {
@@ -84,7 +83,7 @@ pipeline {
                     }
                 }
             }
-        }
+        
         stage('Deploy_Prod') {
             when {
                 expression {
@@ -104,8 +103,5 @@ pipeline {
                     
                     }
                 }
-            }
+            
         }
-
-    }
-}
