@@ -15,7 +15,7 @@ pipeline {
           echo 'Building...'
 		  echo "${env.GIT_BRANCH}".replace("/",".") + "."+"${env.BUILD_ID}"
           echo "Running ${env.BUILD_ID} ${env.BUILD_DISPLAY_NAME} on ${env.NODE_NAME} and JOB ${env.JOB_NAME}"
-		  sh 'docker compose up -d'
+		  sh 'docker-compose up -d'
 		  sh 'docker exec -it admin_api'
 		  sh 'php artisan migrate --force'
 		  sh 'php artisan view:clear'
