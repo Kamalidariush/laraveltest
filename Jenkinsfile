@@ -19,16 +19,7 @@ pipeline {
           echo 'Building...'
 		  echo "${env.GIT_BRANCH}".replace("/",".") + "."+"${env.BUILD_ID}"
           echo "Running ${env.BUILD_ID} ${env.BUILD_DISPLAY_NAME} on ${env.NODE_NAME} and JOB ${env.JOB_NAME}"
-		  script{
-                    docker.withRegistry( '', "${env.NEXUS_CREDENTIAL_ID}") {
-                        
-                        def customImage = docker.build("${env.DOCKER_REGISTRY}:${env.DOCKER_TAG}")
-                        customImage.push()
-
-                        if ( GIT_BRANCH ==~ /.*master|.*hotfix\/.*|.*release\/.*/ )
-                            customImage.push('latest')
-                    }
-                }
+		  
 		  sh 'docker login -u Jenkins-user -p Kalam 172.16.3.116:8081/repository/cicd'
           sh 'docker push 172.16.3.116:8081/repository/cicd}'
           sh 'docker rmi $(docker images --filter=reference="172.16.3.116:8081/repository/cicd*" -q)'
