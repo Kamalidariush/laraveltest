@@ -20,8 +20,8 @@ pipeline {
 		  echo "${env.GIT_BRANCH}".replace("/",".") + "."+"${env.BUILD_ID}"
           echo "Running ${env.BUILD_ID} ${env.BUILD_DISPLAY_NAME} on ${env.NODE_NAME} and JOB ${env.JOB_NAME}"
 		  
-		  sh 'docker login -u Jenkins-user -p Kalam 172.16.3.116:8081/repository/cicd'
-          sh 'docker push 172.16.3.116:8081/repository/cicd}'
+		  sh 'docker login -u Jenkins-user -p Kalam 172.16.3.116:18079/repository/cicd'
+          sh 'docker push 172.16.3.116:18079/repository/cicd}'
           sh 'docker rmi $(docker images --filter=reference="172.16.3.116:8081/repository/cicd*" -q)'
           sh 'docker logout 172.16.3.116:8081/repository/cicd'
 		  sh 'docker exec -it admin_api'
