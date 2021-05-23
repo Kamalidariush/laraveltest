@@ -8,7 +8,7 @@ pipeline {
         DOCKER_TAG = getdockertag()
 		NEXUS_VERSION = "nexus3"
         NEXUS_PROTOCOL = "http"
-        NEXUS_URL = "172.16.3.116:8081/repository"
+        NEXUS_URL = "172.16.3.116:8081/repository/cicd/"
         NEXUS_REPOSITORY = "cicd"
         NEXUS_CREDENTIAL_ID = "Jenkins-user"
 		
@@ -22,7 +22,7 @@ pipeline {
           echo 'Building...'
 		  echo "${env.GIT_BRANCH}".replace("/",".") + "."+"${env.BUILD_ID}"
           echo "Running ${env.BUILD_ID} ${env.BUILD_DISPLAY_NAME} on ${env.NODE_NAME} and JOB ${env.JOB_NAME}"
-          docker.withRegistry( 'http://'+registry, NEXUS_CREDENTIAL_ID ){
+          docker.withRegistry( 'http://'+NEXUS_URL, NEXUS_CREDENTIAL_ID ){
           dockerImage.push('latest')
 		  }
 		  sh 'docker login -u Jenkins-user -p Kalam 172.16.3.116:18079/repository/cicd'
