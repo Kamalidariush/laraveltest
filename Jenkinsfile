@@ -1,6 +1,7 @@
 def getdockertag(){
     return "${env.GIT_BRANCH}".replace("/",".") + "."+"${env.BUILD_ID}"
-}    
+}  
+def dockerImage = docker.build("my-image:${env.BUILD_ID}"  
 pipeline {
    agent any
    environment {
@@ -11,7 +12,7 @@ pipeline {
         NEXUS_URL = "172.16.3.116:8081/repository"
         NEXUS_REPOSITORY = "cicd"
         NEXUS_CREDENTIAL_ID = "Jenkins-user"
-		dockerImage = ''
+		
 	}
 
    stages {
