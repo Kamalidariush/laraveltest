@@ -4,11 +4,11 @@ def getdockertag(){
 pipeline {
    agent any
    environment {
-        registry= "172.16.3.116:8081"
+        registry= "172.16.3.116:8085"
         DOCKER_TAG = getdockertag()
 		NEXUS_VERSION = "nexus3"
         NEXUS_PROTOCOL = "http"
-        NEXUS_URL = "172.16.3.116:8081/repository/cicd/"
+        NEXUS_URL = "172.16.3.116:8085/repository/cicd/"
         NEXUS_REPOSITORY = "cicd"
         NEXUS_CREDENTIAL_ID = "Jenkins-user"
 		
