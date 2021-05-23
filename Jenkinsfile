@@ -1,7 +1,6 @@
 def getdockertag(){
     return "${env.GIT_BRANCH}".replace("/",".") + "."+"${env.BUILD_ID}"
 }  
-def dockerImage = docker.build("my-image:${env.BUILD_ID}"  
 pipeline {
    agent any
    environment {
@@ -19,7 +18,7 @@ pipeline {
       stage('Build') {
         steps {
 			 script {
-		
+		  dockerImage = docker.build("my-image:${env.BUILD_ID}"   	
           echo 'Building...'
 		  echo "${env.GIT_BRANCH}".replace("/",".") + "."+"${env.BUILD_ID}"
           echo "Running ${env.BUILD_ID} ${env.BUILD_DISPLAY_NAME} on ${env.NODE_NAME} and JOB ${env.JOB_NAME}"
